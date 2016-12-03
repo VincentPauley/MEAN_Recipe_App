@@ -1,0 +1,19 @@
+{
+  "name": "mean_recipe",
+  "version": "1.0.0",
+  "description": "recipe and cooking application",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VincentPauley/MEAN_Recipe_App.git"
+  },
+  "author": "Vincent Pauley",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VincentPauley/MEAN_Recipe_App/issues"
+  },
+  "homepage": "https://github.com/VincentPauley/MEAN_Recipe_App#readme"
+}
