@@ -1,3 +1,5 @@
+
+
 var app = angular.module('app', []);
 
 
@@ -24,3 +26,5 @@ app.controller('showAllRecipes', function() {
     ];
     this.recipe_list = recipes;
 });
+
+// alert('trace');
