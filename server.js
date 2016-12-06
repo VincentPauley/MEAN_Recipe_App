@@ -1,29 +1,32 @@
 var express = require('express');
 var app = express();
+var mongodb = require('mongodb');
 
 app.use(express.static('public')); // serve public directory to clientgi
 
 
-var recipes = [
-        {
-            recipe_name : "Chilli",
-            meal_type : "Lunch/Dinner"
-        },
-        {
-            recipe_name : "Omlette",
-            meal_type : "Breakfast"
-        },
-        {
-            recipe_name : "Grilled Cheese",
-            meal_type : "Lunch"
-        },
-        {
-            recipe_name : "Chicken Parmeasean",
-            meal_type : "Dinner"
+app.get('/find', function(req, res) {
+    var MongoClient = mongodb.MongoClient;
+    var query = req.param('query');
+    console.log(query);
+    MongoClient.connect('mongodb://localhost:27017/recipes', function(err, db) {
+        if(err) {
+           // console.log('there was an error: ' + err);
+        } else {
+            // console.log('Connection established to: ' + url);
+            var collection = db.collection('recipes');
+
+            collection.find({}).toArray(function(err, result) {
+                if(err) {
+                    console.log(err);
+                } else if(result.length) {
+                    res.send(result);
+                } else {
+                    console.log('nothing found');
+                }
+            });
         }
-];
-app.get('/get-all-recipes', function(req, res) {
-    res.send(recipes);
+    });
 });
 
 app.listen(3000, function() {

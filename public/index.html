@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <title>Recipe Hub</title>
+        <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css" />
         <script src="bower_components/angular/angular.min.js"></script>
         <script src="js/app.js"></script>
     </head>
@@ -13,7 +14,7 @@
             <h3>All Recipes:</h3>
             <input type="button" value="View All Recipes" ng-click="showCtrl.getAllRecipes()"/>
             <ul>
-                <li ng-repeat="recipe in showCtrl.recipe_list">{{recipe.recipe_name}}<span style="font-size:12px;color:#666666;">, {{recipe.meal_type}}</span></li>
+                <li ng-repeat="recipe in showCtrl.recipe_list">{{recipe.name}}</li>
             </ul>
         </div>
     </body>

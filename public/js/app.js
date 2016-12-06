@@ -12,9 +12,10 @@ app.controller('showAllRecipes', function($http) {
     
     
     this.getAllRecipes = function() {
-         $http.get('/get-all-recipes')
+         $http.get('/find')
         .success((response) => {
             this.recipe_list = response;
+             console.log(response);
         });
     }
 });
