@@ -5,6 +5,7 @@
         <title>Recipe Hub</title>
         <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css" />
         <script src="bower_components/angular/angular.min.js"></script>
+        <script src="bower_components/angular-route/angular-route.min.js"></script>
         <script src="js/app.js"></script>
     </head>
     <body>
@@ -16,6 +17,12 @@
             <ul>
                 <li ng-repeat="recipe in showCtrl.recipe_list">{{recipe.name}}</li>
             </ul>
+        </div>
+        <li><a href="#create_new">Create New</a></li>
+        <li><a href="#view_all">View All</a></li>
+        <!-- Dynamic Content will be injected here -->
+        <div ng-view>
+        
         </div>
     </body>
 </html>

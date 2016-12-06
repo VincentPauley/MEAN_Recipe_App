@@ -1,9 +1,23 @@
 
 
-var app = angular.module('app', []);
+var app = angular.module('app', ['ngRoute']);
+
+// configure angular routes
+app.config(function($routeProvider) {
+    $routeProvider
+    .when('/create_new', {
+        templateUrl : 'templates/create_new.html'
+    })
+    .when('/view_all', {
+        templateUrl : 'templates/view_all.html'
+    });
+});
+
+
+
+
 
 // get-all-recipes
-
 app.controller('showAllRecipes', function($http) {
     this.test = "Lucy";
     
