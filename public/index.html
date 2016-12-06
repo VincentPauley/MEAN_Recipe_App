@@ -8,9 +8,10 @@
     </head>
     <body>
         <h1>Recipe Hub</h1>
-        <p>Welcome to Recipe Hub, {{2 + 2}}</p>
+        <p>Welcome to Recipe Hub</p>
         <div ng-controller="showAllRecipes as showCtrl">
             <h3>All Recipes:</h3>
+            <input type="button" value="View All Recipes" ng-click="showCtrl.getAllRecipes()"/>
             <ul>
                 <li ng-repeat="recipe in showCtrl.recipe_list">{{recipe.recipe_name}}<span style="font-size:12px;color:#666666;">, {{recipe.meal_type}}</span></li>
             </ul>

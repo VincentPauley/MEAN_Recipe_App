@@ -2,29 +2,20 @@
 
 var app = angular.module('app', []);
 
+// get-all-recipes
 
-app.controller('showAllRecipes', function() {
+app.controller('showAllRecipes', function($http) {
     this.test = "Lucy";
     
-    var recipes = [
-        {
-            recipe_name : "Chilli",
-            meal_type : "Lunch/Dinner"
-        },
-        {
-            recipe_name : "Omlette",
-            meal_type : "Breakfast"
-        },
-        {
-            recipe_name : "Grilled Cheese",
-            meal_type : "Lunch"
-        },
-        {
-            recipe_name : "Chicken Parmeasean",
-            meal_type : "Dinner"
-        }
-    ];
-    this.recipe_list = recipes;
+    this.recipe_list = [{recipe_name : "no recipes loaded yet..."}];
+    
+    
+    
+    this.getAllRecipes = function() {
+         $http.get('/get-all-recipes')
+        .success((response) => {
+            this.recipe_list = response;
+        });
+    }
 });
 
-// alert('trace');
