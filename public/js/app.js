@@ -49,9 +49,11 @@ app.controller('createRecipeController', function() {
     var ingredients_list = this.ingredients_list = [];
     
     this.addIngredientToList = function(ingredient) {
-        ingredients_list.push(ingredient);
+        // don't allow duplicate ingredients
+        if(ingredients_list.indexOf(ingredient) < 0) {
+            ingredients_list.push(ingredient);   
+        }
         this.current_ingredient = "";
-        console.log(ingredients_list);
     }
 });
 
