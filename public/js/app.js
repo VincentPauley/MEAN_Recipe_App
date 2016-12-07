@@ -5,6 +5,9 @@ var app = angular.module('app', ['ngRoute']);
 // configure angular routes
 app.config(function($routeProvider) {
     $routeProvider
+    .when('/home', {
+        templateUrl : 'templates/home.html'
+    })
     .when('/create_new', {
         templateUrl : 'templates/create_new.html'
     })
