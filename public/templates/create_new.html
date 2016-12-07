@@ -1,1 +1,13 @@
-<h3 style="color:red;">Create New</h3>
+<h1>Create Recipe</h1>
+<form name="new-recipe">
+    <label for="recipe-name">Recipe Name:</label>
+    <input type="text" id="recipe-name"/><br />
+    <label for="new-ingredient">Add Ingredient:</label>
+    <input type="text" id="new-ingredient" ng-model="newRecipeCtrl.current_ingredient"/>
+    <input type="button" value="Add" ng-click="newRecipeCtrl.addIngredientToList(newRecipeCtrl.current_ingredient)"/>
+    <div id="current-ingredients-container">
+        <ul>
+            <li ng-repeat="ingredient in newRecipeCtrl.ingredients_list">{{ingredient}}</li>
+        </ul>
+    </div>
+</form>

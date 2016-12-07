@@ -11,7 +11,9 @@ app.config(function($routeProvider) {
         controllerAs : 'greetCtrl'
     })
     .when('/create_new', {
-        templateUrl : 'templates/create_new.html'
+        templateUrl : 'templates/create_new.html',
+        controller : 'createRecipeController',
+        controllerAs : 'newRecipeCtrl'
     })
     .when('/view_all', {
         templateUrl : 'templates/view_all.html',
@@ -38,6 +40,18 @@ app.controller('viewRecipes', function($http) {
             this.recipe_list = response;
              console.log(response);
         });
+    }
+});
+
+// create recipe controller
+app.controller('createRecipeController', function() {
+    this.current_ingredient = "Jessie";
+    var ingredients_list = this.ingredients_list = [];
+    
+    this.addIngredientToList = function(ingredient) {
+        ingredients_list.push(ingredient);
+        this.current_ingredient = "";
+        console.log(ingredients_list);
     }
 });
 
