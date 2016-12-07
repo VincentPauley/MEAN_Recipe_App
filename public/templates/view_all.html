@@ -1,1 +1,5 @@
-<h3 style="color:blue;">View All</h3>
+<h3>All Recipes:</h3>
+<input type="button" value="View All Recipes" ng-click="showCtrl.getAllRecipes()"/>
+<ul>
+    <li ng-repeat="recipe in showCtrl.recipe_list">{{recipe.name}}</li>
+</ul>

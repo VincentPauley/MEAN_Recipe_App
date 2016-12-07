@@ -6,24 +6,28 @@ var app = angular.module('app', ['ngRoute']);
 app.config(function($routeProvider) {
     $routeProvider
     .when('/home', {
-        templateUrl : 'templates/home.html'
+        templateUrl : 'templates/home.html',
+        controller : 'userGreeting',
+        controllerAs : 'greetCtrl'
     })
     .when('/create_new', {
         templateUrl : 'templates/create_new.html'
     })
     .when('/view_all', {
-        templateUrl : 'templates/view_all.html'
+        templateUrl : 'templates/view_all.html',
+        controller : 'viewRecipes',
+        controllerAs : 'showCtrl'
     });
 });
 
 
+// Home Controllers
+app.controller('userGreeting', function() {
+    this.user = "Timothy";
+});
 
-
-
-// get-all-recipes
-app.controller('showAllRecipes', function($http) {
-    this.test = "Lucy";
-    
+// view recipes controller
+app.controller('viewRecipes', function($http) {
     this.recipe_list = [{recipe_name : "no recipes loaded yet..."}];
     
     
@@ -36,4 +40,5 @@ app.controller('showAllRecipes', function($http) {
         });
     }
 });
+
 
