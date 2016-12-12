@@ -35,7 +35,7 @@ app.controller('viewRecipes', function($http) {
     
     
     this.getAllRecipes = function() {
-         $http.get('/find')
+        $http.get('/find')
         .success((response) => {
             this.recipe_list = response;
              console.log(response);
@@ -44,15 +44,50 @@ app.controller('viewRecipes', function($http) {
 });
 
 // create recipe controller
-app.controller('createRecipeController', function() {
-    this.current_ingredient = "Jessie";
-    var ingredients_list = this.ingredients_list = [];
+app.controller('createRecipeController', function($http) {
+    this.current_ingredient = "";
+    // var ingredients_list = 
+    let ingredients = this.ingredients_list = {
+        produce : [],
+        dairy : [],
+        meat : [],
+        unknown : []
+    };
     
+    function findIngredientType(ingredient) {
+        console.log('in find ingredient');
+        
+        var data = {"ingredient" : ingredient};
+        $http({
+            url : '/find-ingredient',
+            method : 'POST',
+            data: data
+            
+        })
+        .success((response) => {
+            console.log('SUCCESS');
+            console.log(response);
+            
+            var ingredient_type = response;
+            console.log(ingredients[ingredient_type]);
+            // add to list
+            
+            if(ingredients[ingredient_type].indexOf(ingredient) < 0) {
+                ingredients[ingredient_type].push(ingredient);
+            }
+            return response;
+        }).error(() => {
+            console.log('ERROR');
+        });
+    }   
     this.addIngredientToList = function(ingredient) {
-        // don't allow duplicate ingredients
+        findIngredientType(ingredient);
+        // don't allow duplicate ingredients - do this after selecting from the database so you know what key to check.
+        /*
         if(ingredients_list.indexOf(ingredient) < 0) {
             ingredients_list.push(ingredient);   
         }
+        */
         this.current_ingredient = "";
     }
 });

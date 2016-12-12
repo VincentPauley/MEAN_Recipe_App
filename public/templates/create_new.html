@@ -7,7 +7,33 @@
     <input type="button" value="Add" ng-click="newRecipeCtrl.addIngredientToList(newRecipeCtrl.current_ingredient)"/>
     <div id="current-ingredients-container">
         <ul>
-            <li ng-repeat="ingredient in newRecipeCtrl.ingredients_list">{{ingredient}}</li>
+          <!--  <li ng-repeat="ingredient in newRecipeCtrl.ingredients_list">{{ingredient}}</li> -->
+        </ul>
+    </div>
+    <input type="button" ng-click="newRecipeCtrl.findIngredientType('avacado')" value="Check Function"/>
+    <!-- organized list -->
+    <div ng-show="newRecipeCtrl.ingredients_list.produce.length > 0">
+        <p>Produce</p>
+        <ul>
+            <li ng-repeat="ingredient in newRecipeCtrl.ingredients_list.produce">{{ingredient}}</li>
+        </ul>    
+    </div>
+    <div ng-show="newRecipeCtrl.ingredients_list.dairy.length > 0">
+        <p>Dairy</p>
+        <ul>
+            <li ng-repeat="ingredient in newRecipeCtrl.ingredients_list.dairy">{{ingredient}}</li>
+        </ul>    
+    </div>
+    <div ng-show="newRecipeCtrl.ingredients_list.meat.length > 0">
+        <p>Meat</p>
+        <ul>
+            <li ng-repeat="ingredient in newRecipeCtrl.ingredients_list.meat">{{ingredient}}</li>
+        </ul>
+    </div>
+    <div ng-show="newRecipeCtrl.ingredients_list.unknown.length > 0">
+        <p>Unknown</p>
+        <ul>
+            <li ng-repeat="ingredient in newRecipeCtrl.ingredients_list.unknown">{{ingredient}}</li>
         </ul>
     </div>
 </form>
