@@ -5,12 +5,6 @@
     <label for="new-ingredient">Add Ingredient:</label>
     <input type="text" id="new-ingredient" ng-model="newRecipeCtrl.current_ingredient"/>
     <input type="button" value="Add" ng-click="newRecipeCtrl.addIngredientToList(newRecipeCtrl.current_ingredient)"/>
-    <div id="current-ingredients-container">
-        <ul>
-          <!--  <li ng-repeat="ingredient in newRecipeCtrl.ingredients_list">{{ingredient}}</li> -->
-        </ul>
-    </div>
-    <input type="button" ng-click="newRecipeCtrl.findIngredientType('avacado')" value="Check Function"/>
     <!-- organized list -->
     <div ng-show="newRecipeCtrl.ingredients_list.produce.length > 0">
         <p>Produce</p>

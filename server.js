@@ -23,10 +23,8 @@ app.get('/find', function(req, res) {
             collection.find({}).toArray(function(err, result) {
                 if(err) {
                     console.log(err);
-                } else if(result.length) {
-                    res.send(result);
                 } else {
-                    console.log('nothing found');
+                    res.send(result);
                 }
             });
         }
@@ -46,10 +44,8 @@ app.post('/find-ingredient', function(req, res) {
             collection.find({name : ingredient}, {type : 1, _id : 0}).toArray(function(err, result) {
                 if(err) {
                     console.log(err);
-                } else if(result.length) {
-                    res.send(result[0].type);
                 } else {
-                    console.log('nothing found');
+                    res.send(result);
                 }
             });
         }

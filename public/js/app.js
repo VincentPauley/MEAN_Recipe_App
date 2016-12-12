@@ -55,7 +55,6 @@ app.controller('createRecipeController', function($http) {
     };
     
     function findIngredientType(ingredient) {
-        console.log('in find ingredient');
         
         var data = {"ingredient" : ingredient};
         $http({
@@ -64,30 +63,21 @@ app.controller('createRecipeController', function($http) {
             data: data
             
         })
-        .success((response) => {
-            console.log('SUCCESS');
-            console.log(response);
-            
-            var ingredient_type = response;
-            console.log(ingredients[ingredient_type]);
-            // add to list
-            
-            if(ingredients[ingredient_type].indexOf(ingredient) < 0) {
-                ingredients[ingredient_type].push(ingredient);
+        .success((response) => {            
+            if(response.length) {
+                var ingrediet_type = response[0].type;
+                if(ingredients[ingrediet_type].indexOf(ingredient) < 0) {
+                    ingredients[ingrediet_type].push(ingredient);
+                }
+            } else {
+                ingredients.unknown.push(ingredient);
             }
-            return response;
         }).error(() => {
             console.log('ERROR');
         });
     }   
     this.addIngredientToList = function(ingredient) {
         findIngredientType(ingredient);
-        // don't allow duplicate ingredients - do this after selecting from the database so you know what key to check.
-        /*
-        if(ingredients_list.indexOf(ingredient) < 0) {
-            ingredients_list.push(ingredient);   
-        }
-        */
         this.current_ingredient = "";
     }
 });
