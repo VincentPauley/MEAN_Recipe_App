@@ -19,6 +19,11 @@ app.config(function($routeProvider) {
         templateUrl : 'templates/view_all.html',
         controller : 'viewRecipes',
         controllerAs : 'showCtrl'
+    })
+    .when('/add_ingredients', {
+        templateUrl : 'templates/add_ingredients.html',
+        controller : 'addIngredients',
+        controllerAs : 'addCtrl'
     });
 });
 
@@ -39,6 +44,19 @@ app.controller('viewRecipes', function($http) {
         .success((response) => {
             this.recipe_list = response;
              console.log(response);
+        });
+    }
+});
+
+// add ingredients
+app.controller('addIngredients', function($http) {
+    this.potential_ingredient = "";
+    
+    this.add_ingredient = function() {
+        $http({
+            url : '/add-ingredient',
+            method : 'POST',
+            data : {potential_ingredient : this.potential_ingredient}
         });
     }
 });

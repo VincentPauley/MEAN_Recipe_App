@@ -6,28 +6,30 @@
     <input type="text" id="new-ingredient" ng-model="newRecipeCtrl.current_ingredient"/>
     <input type="button" value="Add" ng-click="newRecipeCtrl.addIngredientToList(newRecipeCtrl.current_ingredient)"/>
     <!-- organized list -->
-    <div ng-show="newRecipeCtrl.ingredients_list.produce.length > 0">
-        <p>Produce</p>
-        <ul>
-            <li ng-repeat="ingredient in newRecipeCtrl.ingredients_list.produce">{{ingredient}}</li>
-        </ul>    
-    </div>
-    <div ng-show="newRecipeCtrl.ingredients_list.dairy.length > 0">
-        <p>Dairy</p>
-        <ul>
-            <li ng-repeat="ingredient in newRecipeCtrl.ingredients_list.dairy">{{ingredient}}</li>
-        </ul>    
-    </div>
-    <div ng-show="newRecipeCtrl.ingredients_list.meat.length > 0">
-        <p>Meat</p>
-        <ul>
-            <li ng-repeat="ingredient in newRecipeCtrl.ingredients_list.meat">{{ingredient}}</li>
-        </ul>
-    </div>
-    <div ng-show="newRecipeCtrl.ingredients_list.unknown.length > 0">
-        <p>Unknown</p>
-        <ul>
-            <li ng-repeat="ingredient in newRecipeCtrl.ingredients_list.unknown">{{ingredient}}</li>
-        </ul>
+    <div id="ingredients-list">
+        <div ng-show="newRecipeCtrl.ingredients_list.produce.length > 0">
+            <p>Produce</p>
+            <ul>
+                <li ng-repeat="ingredient in newRecipeCtrl.ingredients_list.produce">{{ingredient}}</li>
+            </ul>    
+        </div>
+        <div ng-show="newRecipeCtrl.ingredients_list.dairy.length > 0">
+            <p>Dairy</p>
+            <ul>
+                <li ng-repeat="ingredient in newRecipeCtrl.ingredients_list.dairy">{{ingredient}}</li>
+            </ul>    
+        </div>
+        <div ng-show="newRecipeCtrl.ingredients_list.meat.length > 0">
+            <p>Meat</p>
+            <ul>
+                <li ng-repeat="ingredient in newRecipeCtrl.ingredients_list.meat">{{ingredient}}</li>
+            </ul>
+        </div>
+        <div ng-show="newRecipeCtrl.ingredients_list.unknown.length > 0">
+            <p>Unknown</p>
+            <ul>
+                <li ng-repeat="ingredient in newRecipeCtrl.ingredients_list.unknown">{{ingredient}}</li>
+            </ul>
+        </div>
     </div>
 </form>
