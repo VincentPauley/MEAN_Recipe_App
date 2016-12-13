@@ -48,15 +48,35 @@ app.controller('viewRecipes', function($http) {
     }
 });
 
-// add ingredients
+/* Finally onto something here, always bind 'this' to a variable so you don't have context issues
+inside of promises etc. */
 app.controller('addIngredients', function($http) {
-    this.potential_ingredient = "";
+    var vm = this;
+    vm.potential_ingredient = "";
+    vm.ingedient_category = "";
     
-    this.add_ingredient = function() {
+    vm.add_ingredient = function() {
         $http({
             url : '/add-ingredient',
             method : 'POST',
-            data : {potential_ingredient : this.potential_ingredient}
+            data : {
+                potential_ingredient : vm.potential_ingredient,
+                ingredient_type : vm.ingedient_category
+            }
+        });
+    }
+    
+    vm.category_choices = [];
+    vm.retrieve_ingredient_categories = function() {
+        $http({
+            url : '/ingredient-categories', 
+            method : 'GET',
+        })
+        .success((response) => {
+            vm.category_choices = response; 
+        })
+        .error((response) => {
+            vm.category_choices = ["there was an error retrieving ingredient types"];
         });
     }
 });

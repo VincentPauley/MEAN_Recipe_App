@@ -70,6 +70,7 @@ app.post('/add-ingredient', function(req, res) {
     var MongoClient = mongodb.MongoClient;
     console.log('Add Ingredient');
     var potential_ingredient = req.body.potential_ingredient;
+    var ingredient_type = req.body.ingredient_type;
     
     MongoClient.connect('mongodb://localhost:27017/recipes', function(err, db) {
         if(err) {
@@ -86,22 +87,31 @@ app.post('/add-ingredient', function(req, res) {
                         console.log('result was found');
                         console.log(result)
                     } else {
-                        console.log('no match found');
-                        collection.insertOne({name : potential_ingredient, type : 'meat'});
+                        console.log('no match found, pushing to DB');
+                        collection.insertOne({name : potential_ingredient, type : ingredient_type});
                     }
                 }
             }); 
         }
     });
 });
-
+// TODO: in the fe, call this route to create form options for the type of ingredient !!!
 app.get('/ingredient-categories', function(req, res) {
    var MongoClient = mongodb.MongoClient;
-   console.log('ingredient categories function');
     
    MongoClient.connect('mongodb://localhost:27017/recipes', function(err, db) {
        if(err) {
-           console.log('there was an error attempthing to connect');
+           console.log('there was an error attempthing to connect: ' + err);
+       } else {
+           var collection = db.collection('ingredients');
+           
+           collection.distinct("type", function(err, result) {
+                if(err) {
+                    console.log('there was an error: ' + err);
+                } else {
+                    res.send(result);
+                }
+           });
        }
    });
 });

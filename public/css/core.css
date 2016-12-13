@@ -1,0 +1,7 @@
+/* Navigation Bar */
+.navbar-default {
+    background-color: #ff9800;
+}
+.navbar-default a {
+    color: #FFF !important;
+}
