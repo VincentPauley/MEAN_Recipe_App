@@ -1,0 +1,9 @@
+input[type=text], select{
+    display: inline-block !important;
+}
+input[type=text] {
+    max-width: 300px;
+}
+select {
+    max-width: 180px;
+}

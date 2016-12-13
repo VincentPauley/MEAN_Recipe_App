@@ -53,7 +53,7 @@ inside of promises etc. */
 app.controller('addIngredients', function($http) {
     var vm = this;
     vm.potential_ingredient = "";
-    vm.ingedient_category = "";
+    vm.ingedient_category = "Select Type";
     
     vm.add_ingredient = function() {
         $http({

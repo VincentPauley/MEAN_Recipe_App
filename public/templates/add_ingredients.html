@@ -1,16 +1,10 @@
 <h1>Add Ingredients</h1>
-<input type="text" ng-model="addCtrl.potential_ingredient" />
+<input type="text" ng-model="addCtrl.potential_ingredient" class="form-control"/>
+<select ng-init="addCtrl.retrieve_ingredient_categories()" ng-model="addCtrl.ingedient_category" class="form-control">
+    <option>Select Type</option>
+    <option 
+        ng-repeat="category in addCtrl.category_choices" 
+        ng-value="{{category}}"
+    >{{category}}</option>
+</select>
 <input type="button" ng-click="addCtrl.add_ingredient()" value="Add"/>
-<ul ng-init="addCtrl.retrieve_ingredient_categories()">
-    <li ng-repeat="category in addCtrl.category_choices">
-        <label for="">{{category}}</label>
-        <input type="radio" 
-               name="category"
-               ng-model="addCtrl.ingedient_category"
-               ng-value="category"
-               id="{{category}}"
-        />
-    </li>
-</ul>
-<p>Ingredient: {{addCtrl.potential_ingredient}}</p>
-<p>Category: {{addCtrl.ingedient_category}}</p>
