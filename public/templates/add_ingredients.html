@@ -1,10 +1,42 @@
 <h1>Add Ingredients</h1>
-<input type="text" ng-model="addCtrl.potential_ingredient" class="form-control"/>
+<!-- Name Ingredient -->
+<label for="ingredient-name-input">Ingredient Name:</label>
+<input type="text" ng-model="addCtrl.potential_ingredient" class="form-control" id="ingredient-name-input"/><br />
+<!-- Select Category -->
+<label for="">Select Category:</label>
 <select ng-init="addCtrl.retrieve_ingredient_categories()" ng-model="addCtrl.ingedient_category" class="form-control">
     <option>Select Type</option>
-    <option 
-        ng-repeat="category in addCtrl.category_choices" 
+    <option
+        ng-repeat="category in addCtrl.category_choices"
         ng-value="{{category}}"
     >{{category}}</option>
 </select>
+<label for="create-category-button">or :</label>
+<input type="button" ng-click="addCtrl.new_category()" value="Create Category" id="create-category-button" /><br />
+<!-- Add Ingredient -->
 <input type="button" ng-click="addCtrl.add_ingredient()" value="Add"/>
+
+
+<!-- New Category Modal -->
+<div id="create-category-modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Header -->
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Create Category</h4>
+      </div>
+      <!-- Body -->
+      <div class="modal-body">
+        <p>If your new ingredient does not fit in to one of these existing categories, you can create your own:</p>
+        <ul>
+          <li ng-repeat="category in addCtrl.category_choices">{{category}}</li>
+        </ul>
+      </div>
+      <!-- Footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -36,9 +36,9 @@ app.controller('userGreeting', function() {
 // view recipes controller
 app.controller('viewRecipes', function($http) {
     this.recipe_list = [{recipe_name : "no recipes loaded yet..."}];
-    
-    
-    
+
+
+
     this.getAllRecipes = function() {
         $http.get('/find')
         .success((response) => {
@@ -54,7 +54,7 @@ app.controller('addIngredients', function($http) {
     var vm = this;
     vm.potential_ingredient = "";
     vm.ingedient_category = "Select Type";
-    
+
     vm.add_ingredient = function() {
         $http({
             url : '/add-ingredient',
@@ -65,43 +65,48 @@ app.controller('addIngredients', function($http) {
             }
         });
     }
-    
-    vm.category_choices = [];
+
+    vm.new_category = function() {
+        $('#create-category-modal').modal('show');
+    }
+
+    vm.category_choices = ['dairy', 'meat', 'dry goods', 'produce'];
+    /* TODO: wait on this for now
     vm.retrieve_ingredient_categories = function() {
         $http({
-            url : '/ingredient-categories', 
+            url : '/ingredient-categories',
             method : 'GET',
         })
         .success((response) => {
-            vm.category_choices = response; 
+            vm.category_choices = response;
         })
         .error((response) => {
             vm.category_choices = ["there was an error retrieving ingredient types"];
         });
-    }
+    }*/
 });
 
 // create recipe controller
 app.controller('createRecipeController', function($http) {
     this.current_ingredient = "";
-    // var ingredients_list = 
+    // var ingredients_list =
     let ingredients = this.ingredients_list = {
         produce : [],
         dairy : [],
         meat : [],
         unknown : []
     };
-    
+
     function findIngredientType(ingredient) {
-        
+
         var data = {"ingredient" : ingredient};
         $http({
             url : '/find-ingredient',
             method : 'POST',
             data: data
-            
+
         })
-        .success((response) => {            
+        .success((response) => {
             if(response.length) {
                 var ingrediet_type = response[0].type;
                 if(ingredients[ingrediet_type].indexOf(ingredient) < 0) {
@@ -113,11 +118,9 @@ app.controller('createRecipeController', function($http) {
         }).error(() => {
             console.log('ERROR');
         });
-    }   
+    }
     this.addIngredientToList = function(ingredient) {
         findIngredientType(ingredient);
         this.current_ingredient = "";
     }
 });
-
-
